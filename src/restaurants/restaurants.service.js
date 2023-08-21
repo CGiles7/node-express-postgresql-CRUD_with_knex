@@ -5,7 +5,7 @@ function list() {
 }
 
 function create(restaurant) {
-  // Your solution here
+  return knex("restaurants").insert(restaurant, "*");
 }
 
 function read(restaurant_id = 0) {
@@ -14,13 +14,12 @@ function read(restaurant_id = 0) {
 
 function update(updatedRestaurant) {
   return knex("restaurants")
-    .select("*")
     .where({ restaurant_id: updatedRestaurant.restaurant_id })
     .update(updatedRestaurant, "*");
 }
 
 function destroy(restaurant_id) {
-  // Your solution here
+  return knex("restaurants").where({ restaurant_id }).del();
 }
 
 module.exports = {
@@ -28,5 +27,5 @@ module.exports = {
   list,
   read,
   update,
-  delete: destroy,
+  destroy,
 };
